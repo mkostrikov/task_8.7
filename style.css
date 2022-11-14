@@ -1,0 +1,148 @@
+* {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+header {
+  height: 70px;
+  width: 414px;
+  background-color: #5576bd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-header {
+  margin: 15px 0;
+}
+
+.container,
+.container-header,
+.range-block,
+.container-main,
+.answer-main,
+.container-footer {
+  background-color: #c0ceed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 414px;
+}
+
+.range-block-header {
+  font-size: 16px;
+  text-align: center;
+  position: relative;
+}
+
+.range-block-header::marker {
+  content: "";
+}
+
+.range-inp-group,
+.range-descrip-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 10px 0;
+}
+
+.range-block,
+button {
+  cursor: pointer;
+}
+
+.range-block[open] > .range-block-header::before {
+  transform: rotate(90deg);
+}
+
+.range-block:hover {
+  background-color: #9ab4ed;
+}
+
+.range-block-header::before {
+  content: "\27A4";
+  position: absolute;
+  left: 40px;
+  bottom: 1px;
+  transition: transform 0.2s;
+}
+
+.range-input {
+  font-size: 16px;
+  text-align: center;
+  color: #000;
+}
+
+.answer-main {
+  height: 200px;
+  width: 390px;
+  margin: 15px 0;
+  border: 5px solid #5576bd;
+  border-radius: 20px;
+}
+
+.answer-header {
+  font-size: 20px;
+}
+
+.answer-field {
+  font-size: 24px;
+}
+
+.container-main-btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container-main-btn-group > button {
+  width: 130px;
+  height: 50px;
+  font-size: 16px;
+  letter-spacing: 0.3em;
+}
+
+#btn-start,
+#btn-restart {
+  margin: 30px 0;
+  width: 200px;
+  height: 50px;
+  font-size: 16px;
+  background-color: #a64cbc;
+  color: #fff;
+  border: solid 1px #360243;
+  border-radius: 5px;
+  letter-spacing: 0.3em;
+}
+
+#btn-start:hover,
+#btn-restart:hover {
+  background-color: #db93ed;
+}
+
+#btn-less,
+#btn-more {
+  background-color: #ffca62;
+  border: solid 1px #5b3d03;
+  border-radius: 5px;
+}
+
+#btn-less:hover,
+#btn-more:hover {
+  background-color: #ffdd9b;
+}
+
+#btn-succes {
+  background-color: #89e558;
+  border: solid 1px #1e5203;
+  border-radius: 5px;
+}
+
+#btn-succes:hover {
+  background-color: #b9f897;
+}
