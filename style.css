@@ -7,12 +7,13 @@
 }
 
 header {
-  height: 70px;
+  height: 90px;
   width: 414px;
   background-color: #5576bd;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #fff;
 }
 
 .container-header {
@@ -34,7 +35,7 @@ header {
 }
 
 .range-block-header {
-  font-size: 16px;
+  font-size: 20px;
   text-align: center;
   position: relative;
 }
@@ -56,6 +57,10 @@ button {
   cursor: pointer;
 }
 
+.range-block {
+  height: 90px;
+}
+
 .range-block[open] > .range-block-header::before {
   transform: rotate(90deg);
 }
@@ -67,7 +72,7 @@ button {
 .range-block-header::before {
   content: "\27A4";
   position: absolute;
-  left: 40px;
+  left: 5px;
   bottom: 1px;
   transition: transform 0.2s;
 }
@@ -78,21 +83,22 @@ button {
   color: #000;
 }
 
-.dialog-main {
+#dialog-field {
+  resize: none;
   height: 230px;
   width: 390px;
-  margin: 15px 0;
   border: 5px solid #5576bd;
   border-radius: 20px;
   font-size: 24px;
   text-align: center;
-  line-height: 30px;
+  line-height: 42px;
 }
 
 .container-main-btn-group {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 20px 0;
 }
 
 .container-main-btn-group > button {

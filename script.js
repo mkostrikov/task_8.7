@@ -15,12 +15,15 @@ inputRangeMin.addEventListener("input", inputValid);
 inputRangeMax.addEventListener("input", inputValid);
 
 function messageForUser(text) {
-  const dialogWindow = document.querySelector(".dialog-field");
+  const dialogWindow = document.querySelector("#dialog-field");
   dialogWindow.textContent = text;
-};
+}
 
 function welcomeMessage() {
-  let welcomeText = `Привет! Загадайте любое целое число от ${MIN} до ${MAX}, а я его угадаю!`
+  let welcomeText = `Привет!
+  Загадайте любое целое число
+  от ${MIN} до ${MAX},
+  а я его угадаю!`;
   document.querySelector(".range-block").setAttribute("open", "open");
   messageForUser(welcomeText);
 }
@@ -40,7 +43,10 @@ function changeMin(event) {
     ? (currentRangeMin = `${parseInt(rangeMax, 10) - 1}`)
     : currentRangeMin;
   inputRangeMin.value = currentRangeMin;
-  let message = `Привет! Загадайте любое целое число от ${currentRangeMin} до ${rangeMax}, а я его угадаю!`;
+  let message = `Привет!
+  Загадайте любое целое число
+  от ${currentRangeMin} до ${rangeMax},
+  а я его угадаю!`;
   messageForUser(message);
 }
 
@@ -55,6 +61,9 @@ function changeMax(event) {
     ? (currentRangeMax = `${parseInt(rangeMin, 10) + 1}`)
     : currentRangeMax;
   inputRangeMax.value = currentRangeMax;
-  let message = `Привет! Загадайте любое целое число от ${rangeMin} до ${currentRangeMax}, а я его угадаю!`;
+  let message = `Привет!
+  Загадайте любое целое число
+  от ${rangeMin} до ${currentRangeMax},
+  а я его угадаю!`;
   messageForUser(message);
 }
