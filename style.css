@@ -16,14 +16,14 @@ header {
 }
 
 .container-header {
-  margin: 15px 0;
+  margin: 15px 0 0;
 }
 
 .container,
 .container-header,
 .range-block,
 .container-main,
-.answer-main,
+.dialog-main,
 .container-footer {
   background-color: #c0ceed;
   display: flex;
@@ -78,20 +78,15 @@ button {
   color: #000;
 }
 
-.answer-main {
-  height: 200px;
+.dialog-main {
+  height: 230px;
   width: 390px;
   margin: 15px 0;
   border: 5px solid #5576bd;
   border-radius: 20px;
-}
-
-.answer-header {
-  font-size: 20px;
-}
-
-.answer-field {
   font-size: 24px;
+  text-align: center;
+  line-height: 30px;
 }
 
 .container-main-btn-group {

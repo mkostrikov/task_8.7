@@ -19,24 +19,20 @@
           </summary>
           <div class="range-inp-group">
             <input
-              type="number"
+              type="text"
               class="range-input"
               id="range-input-min"
-              min="-999"
-              max="998"
-              step="1"
               value="-999"
               autocomplete="off"
+              size="6"
             />
             <input
-              type="number"
+              type="text"
               class="range-input"
               id="range-input-max"
-              min="-998"
-              max="999"
-              step="1"
               value="999"
               autocomplete="off"
+              size="6"
             />
           </div>
           <div class="range-descrip-group">
@@ -47,9 +43,8 @@
         <button class="btn" id="btn-start">начать</button>
       </div>
       <div class="container-main">
-        <p class="answer-header">ваше число</p>
-        <div class="answer-main">
-          <p class="answer-field"></p>
+        <div class="dialog-main">
+          <p class="dialog-field"></p>
         </div>
         <div class="container-main-btn-group">
           <button class="btn" id="btn-less">меньше</button>
@@ -63,6 +58,6 @@
     </main>
     <footer></footer>
 
-    <script src="script.js"></script>
+    <script src="script.js"></script> 
   </body>
 </html>
