@@ -42,6 +42,7 @@ function welcomeMessage() {
   а я его угадаю!`;
   document.querySelector(".range-block").setAttribute("open", "open");
   message(welcomeText);
+  btnStart.classList.add("blinker");
 }
 
 function inputValid() {
@@ -72,6 +73,7 @@ function changeMax(event) {
 
 function gameStart() {
   gameStarted = true;
+  btnStart.classList.remove("blinker");
   btnStart.removeEventListener("click", gameStart);
   document.querySelector(".range-block").removeAttribute("open");
   inputMin.setAttribute("readonly", "");
@@ -86,6 +88,7 @@ function valueMore() {
   if (gameStarted) {
     if (endValue === startValue) {
       failPhraseRandom();
+      btnRestart.classList.add("blinker");
       gameStarted = false;
     } else {
       startValue = answer + 1;
@@ -100,6 +103,7 @@ function valueLess() {
   if (gameStarted) {
     if (startValue === endValue) {
       failPhraseRandom();
+      btnRestart.classList.add("blinker");
       gameStarted = false;
     } else {
       endValue = answer - 1;
@@ -113,12 +117,14 @@ function valueLess() {
 function valueSucces() {
   if (gameStarted) {
     succesPhraseRandom();
+    btnRestart.classList.add("blinker");
     gameStarted = false;
   }
 }
 
 function gameRestart() {
   btnStart.addEventListener("click", gameStart);
+  btnRestart.classList.remove("blinker");
   inputMin.removeAttribute("readonly");
   inputMax.removeAttribute("readonly");
   startValue = parseInt(inputMin.value);
