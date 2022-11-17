@@ -58,6 +58,10 @@ function changeMin(event) {
     : currentMin;
   inputMin.value = currentMin;
   startValue = parseInt(inputMin.value);
+  message( `Привет!
+  Загадайте любое целое число
+  от ${String(startValue)} до ${String(endValue)},
+  а я его угадаю!`);
 }
 
 function changeMax(event) {
@@ -69,6 +73,10 @@ function changeMax(event) {
     : currentMax;
   inputMax.value = currentMax;
   endValue = parseInt(inputMax.value);
+  message( `Привет!
+  Загадайте любое целое число
+  от ${String(startValue)} до ${String(endValue)},
+  а я его угадаю!`);
 }
 
 function gameStart() {
