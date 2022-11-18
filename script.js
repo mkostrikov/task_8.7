@@ -116,7 +116,6 @@ function valueLess() {
     } else {
       endValue = answer - 1;
       answer = Math.ceil((startValue + endValue) / 2);
-      console.log(startValue, endValue);
       numberToText(answer);
       answerPhraseRandom(strAnswer);
     }
