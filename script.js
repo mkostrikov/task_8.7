@@ -111,7 +111,6 @@ function valueMore() {
       } else {
         answer = Math.floor(answer);
       }
-      console.log(startValue, endValue, answer)
       numberToText(answer);
       answerPhraseRandom(strAnswer);
     }
@@ -132,7 +131,6 @@ function valueLess() {
       } else {
         answer = Math.floor(answer);
       }
-      console.log(startValue, endValue, answer)
       numberToText(answer);
       answerPhraseRandom(strAnswer);
     }
