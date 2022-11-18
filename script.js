@@ -115,7 +115,8 @@ function valueLess() {
       gameStarted = false;
     } else {
       endValue = answer - 1;
-      answer = Math.floor((startValue + endValue) / 2);
+      answer = Math.ceil((startValue + endValue) / 2);
+      console.log(startValue, endValue);
       numberToText(answer);
       answerPhraseRandom(strAnswer);
     }
