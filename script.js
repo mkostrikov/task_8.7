@@ -87,7 +87,12 @@ function gameStart() {
   inputMin.setAttribute("readonly", "");
   inputMax.setAttribute("readonly", "");
 
-  answer = Math.floor((startValue + endValue) / 2);
+  answer = (startValue + endValue) / 2;
+      if (answer < 0) {
+        answer = Math.ceil(answer);
+      } else {
+        answer = Math.floor(answer);
+      }
   numberToText(answer);
   answerPhraseRandom(strAnswer);
 }
@@ -100,7 +105,13 @@ function valueMore() {
       gameStarted = false;
     } else {
       startValue = answer + 1;
-      answer = Math.floor((startValue + endValue) / 2);
+      answer = (startValue + endValue) / 2;
+      if (answer < 0) {
+        answer = Math.ceil(answer);
+      } else {
+        answer = Math.floor(answer);
+      }
+      console.log(startValue, endValue, answer)
       numberToText(answer);
       answerPhraseRandom(strAnswer);
     }
@@ -109,13 +120,19 @@ function valueMore() {
 
 function valueLess() {
   if (gameStarted) {
-    if (startValue === endValue) {
+    if (endValue === startValue) {
       failPhraseRandom();
       btnRestart.classList.add("blinker");
       gameStarted = false;
     } else {
       endValue = answer - 1;
-      answer = Math.ceil((startValue + endValue) / 2);
+      answer = (startValue + endValue) / 2;
+      if (answer < 0) {
+        answer = Math.ceil(answer);
+      } else {
+        answer = Math.floor(answer);
+      }
+      console.log(startValue, endValue, answer)
       numberToText(answer);
       answerPhraseRandom(strAnswer);
     }
