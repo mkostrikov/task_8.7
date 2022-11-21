@@ -157,8 +157,7 @@ function gameRestart() {
 }
 
 function numberToText(number) {
-  let strSign = "";
-  let arrUnits = [
+  let _1to9 = [
     "один",
     "два",
     "три",
@@ -169,7 +168,7 @@ function numberToText(number) {
     "восемь",
     "девять",
   ];
-  let arrTensSpecial = [
+  let _10to19 = [
     "десять",
     "одиннадцать",
     "двенадцать",
@@ -181,7 +180,7 @@ function numberToText(number) {
     "восемнадцать",
     "девятнадцать",
   ];
-  let arrTens = [
+  let _20to90 = [
     "двадцать",
     "тридцать",
     "сорок",
@@ -191,67 +190,76 @@ function numberToText(number) {
     "восемьдесят",
     "девяносто",
   ];
-  let arrHundreds = ["сто", "двести", "триста", "четыреста"];
+  let _100to900 = [
+    "сто",
+    "двести",
+    "триста",
+    "четыреста",
+    "пятьсот",
+    "шестьсот",
+    "семьсот",
+    "восемьсот",
+    "девятьсот",
+  ];
+  let textSign = "";
+  let textHundreds = "";
+  let textTens = "";
+  let textUnits = "";
+  let numHundreds = "";
+  let numTens = "";
+  let numUnits = "";
 
   if (number !== 0) {
-    if (number < 0) {
-      strSign = "минус";
-    } else {
-      strSign = "";
-    }
-
-    let thirdPart = Math.floor(Math.abs(number) / 100) % 10;
-    let secondPart = Math.floor(Math.abs(number) / 10) % 10;
-    let firstPart = Math.abs(number) % 10;
-
-    if (!thirdPart && secondPart === 1) {
-      strAnswer = `${strSign} ${tensSpecial(firstPart)}`;
-    } else {
-      strAnswer = `${strSign} ${hundreds(thirdPart)} ${tens(
-        secondPart
-      )} ${units(firstPart)}`;
-    }
+    numHundreds = Math.floor(Math.abs(number) / 100) % 10;
+    numTens = Math.floor(Math.abs(number) / 10) % 10;
+    numUnits = Math.abs(number) % 10;
+    number < 0 ? (textSign = "минус") : (textSign = "");
+    textNumber = `${textSign} ${hundreds(numHundreds)} ${tens(numTens, numUnits)} ${units(numTens, numUnits)}`;
+    textNumber.replace(/\s+/g, " ").trim();
+    console.log(textNumber);
   } else {
-    strAnswer = "0";
+    textNumber = "0";
+    console.log(textNumber);
   }
 
-  function hundreds(num, strNum) {
-    if (num > 0 && num < 5) {
-      strNum = arrHundreds[num - 1];
-    } else if (num >= 5 && num <= 9) {
-      strNum = `${arrUnits[num - 1]}сот`;
+  function hundreds(numHundreds = 0) {
+    if (numHundreds) {
+      textHundreds = `${_100to900[numHundreds - 1]}`;
     } else {
-      strNum = "";
+      textHundreds = "";
     }
-    return strNum;
+    return textHundreds;
   }
 
-  function tensSpecial(num, strNum) {
-    strNum = arrTensSpecial[num];
-    return strNum;
-  }
-
-  function tens(num, strNum) {
-    if (num >= 2 && num <= 9) {
-      strNum = arrTens[num - 2];
+  function tens(numTens = 0, numUnits = 0) {
+    if (numTens) {
+      if (numTens === 1) {
+        textTens = _10to19[numUnits];
+      } else {
+        textTens = _20to90[numTens - 2];
+      }
     } else {
-      strNum = "";
+      textTens = "";
     }
-    return strNum;
+    return textTens;
   }
 
-  function units(num, strNum) {
-    if (num > 0 && num <= 9) {
-      strNum = arrUnits[num - 1];
+  function units(numTens, numUnits) {
+    if (numTens !== 1) {
+      if (numUnits) {
+        textUnits = _1to9[numUnits - 1];
+      } else {
+        textUnits = "";
+      }
     } else {
-      strNum = "";
+      textUnits = "";
     }
-    return strNum;
+    return textUnits;
   }
-  strAnswer.replace(/\s+/g, " ").trim();
-  strAnswer.length > 20 ? (strAnswer = String(number)) : strAnswer;
-  return strAnswer;
+  return textNumber;
 }
+
+strAnswer.length > 20 ? (strAnswer = String(number)) : strAnswer;
 
 function answerPhraseRandom(str) {
   counter++;
