@@ -101,6 +101,8 @@ function gameRestart() {
     .removeEventListener("click", gameRestart);
   document.querySelector("#btn-restart").classList.remove("blinker");
   document.querySelector(".range-block").setAttribute("open", "open");
+  inputStart.setAttribute("readonly", "false");
+  inputEnd.setAttribute("readonly", "false");
 }
 
 function numLess() {
