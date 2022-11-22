@@ -25,8 +25,8 @@ function welcomeMessage() {
   document.querySelector("#btn-start").classList.add("blinker");
   document.querySelector(".range-block").setAttribute("open", "open");
   document.querySelector("#dialog-field").textContent = `
-  Привет!
-  Загадай число
+Привет!
+Загадай число
 от ${String(inputStart.value)} до ${String(inputEnd.value)}
 а я его угадаю!
   `;
@@ -252,7 +252,7 @@ function numberToText(number) {
 function answerPhraseRandom(str) {
   const phrases = [
     `
-    Попытка №${counter}
+Попытка №${counter}
 Наверное, это число
 ${str}?`,
     `
