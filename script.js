@@ -10,24 +10,32 @@ let endValue;
 let counter;
 let list = [];
 let reg = /(?<=^0)(.*)|(?<=^-)([^1-9])|(?<=[1-9])([^0-9])|[^-0-9]/g;
+let textNumber = '';
 
-document.querySelector("#btn-start").addEventListener("click", gameStart);
+document.addEventListener("DOMContentLoaded", welcomeMessage);
+
 inputStart.addEventListener("input", inputValid);
 inputStart.addEventListener("change", changeInputStart);
 
 inputEnd.addEventListener("input", inputValid);
 inputEnd.addEventListener("change", changeInputEnd);
 
-document.querySelector("#btn-less").addEventListener("click", numLess);
-document.querySelector("#btn-more").addEventListener("click", numMore);
-document.querySelector("#btn-succes").addEventListener("click", numSucces);
-
-document.addEventListener("DOMContentLoaded", welcomeMessage);
+function welcomeMessage() {
+  document.querySelector("#btn-start").addEventListener("click", gameStart);
+  document.querySelector("#btn-start").classList.add("blinker");
+  document.querySelector(".range-block").setAttribute("open", "open");
+  document.querySelector("#dialog-field").textContent = `
+  Привет!
+  Загадай число
+от ${String(inputStart.value)} до ${String(inputEnd.value)}
+а я его угадаю!
+  `;
+}
 
 function changeInputStart(event) {
   let currentMin = event.target.value;
   currentMin === "" || isNaN(currentMin) || parseInt(currentMin, 10) < -999
-    ? (currentMin = `${String(-999)}`)
+  ? (currentMin = `${String(-999)}`)
     : parseInt(currentMin, 10) >= parseInt(inputEnd.value, 10)
     ? (currentMin = `${parseInt(inputEnd.value, 10) - 1}`)
     : currentMin;
@@ -38,8 +46,8 @@ function changeInputStart(event) {
 function changeInputEnd(event) {
   let currentMax = event.target.value;
   currentMax === "" || isNaN(currentMax) || parseInt(currentMax, 10) > 999
-    ? (currentMax = `${String(999)}`)
-    : parseInt(currentMax, 10) <= parseInt(inputStart.value, 10)
+  ? (currentMax = `${String(999)}`)
+  : parseInt(currentMax, 10) <= parseInt(inputStart.value, 10)
     ? (currentMax = `${parseInt(inputStart.value, 10) + 1}`)
     : currentMax;
   inputEnd.value = currentMax;
@@ -66,7 +74,7 @@ function binary(start, end) {
   if (start > end) {
     failPhraseRandom();
     gameStarted = false;
-    document.querySelector("#btn-restart").classList.add("blinker");
+    gameStatus();
   } else {
     middle = Math.floor((start + end) / 2);
     answerNum = list[middle];
@@ -76,15 +84,29 @@ function binary(start, end) {
   }
 }
 
+function gameStatus() {
+  if (gameStarted) {
+    document.querySelector("#btn-less").addEventListener("click", numLess);
+    document.querySelector("#btn-more").addEventListener("click", numMore);
+    document.querySelector("#btn-succes").addEventListener("click", numSucces);
+    document.querySelector("#btn-restart").addEventListener("click", gameRestart);
+    document.querySelector("#btn-start").removeEventListener("click", gameStart);
+    document.querySelector("#btn-start").classList.remove("blinker");
+    document.querySelector(".range-block").removeAttribute("open");
+    inputStart.setAttribute("readonly", "true");
+    inputEnd.setAttribute("readonly", "true");
+  } else {
+    document.querySelector("#btn-less").removeEventListener("click", numLess);
+    document.querySelector("#btn-more").removeEventListener("click", numMore);
+    document.querySelector("#btn-succes").removeEventListener("click", numSucces);
+    document.querySelector("#btn-restart").classList.add("blinker");
+  }
+}
+
 function gameStart() {
   gameStarted = true;
-  document.querySelector("#btn-restart").addEventListener("click", gameRestart);
-  document.querySelector("#btn-start").removeEventListener("click", gameStart);
-  document.querySelector("#btn-start").classList.remove("blinker");
-  document.querySelector(".range-block").removeAttribute("open");
-  inputStart.setAttribute("readonly", "true");
-  inputEnd.setAttribute("readonly", "true");
   getStartValue();
+  gameStatus();
   binary(start, end);
 }
 
@@ -93,12 +115,8 @@ function gameRestart() {
   endValue = 0;
   counter = 0;
   list = [];
-  document.querySelector("#btn-start").addEventListener("click", gameStart);
-  document.querySelector("#btn-start").classList.add("blinker");
   welcomeMessage();
-  document
-    .querySelector("#btn-restart")
-    .removeEventListener("click", gameRestart);
+  document.querySelector("#btn-restart").removeEventListener("click", gameRestart);
   document.querySelector("#btn-restart").classList.remove("blinker");
   document.querySelector(".range-block").setAttribute("open", "open");
   inputStart.removeAttribute("readonly");
@@ -123,18 +141,8 @@ function numSucces() {
   if (gameStarted) {
     succesPhraseRandom();
     gameStarted = false;
-    document.querySelector("#btn-restart").classList.add("blinker");
+    gameStatus();
   }
-}
-
-function welcomeMessage() {
-  document.querySelector(".range-block").setAttribute("open", "open");
-  document.querySelector("#dialog-field").textContent = `
-Привет!
-Загадай число
-от ${String(inputStart.value)} до ${String(inputEnd.value)}
-а я его угадаю!
-  `;
 }
 
 function message(text) {
@@ -199,10 +207,7 @@ function numberToText(number) {
     numTens = Math.floor(Math.abs(number) / 10) % 10;
     numUnits = Math.abs(number) % 10;
     number < 0 ? (textSign = "минус") : (textSign = "");
-    textNumber = `${textSign} ${hundreds(numHundreds)} ${tens(
-      numTens,
-      numUnits
-    )} ${units(numTens, numUnits)}`;
+    textNumber = `${textSign} ${hundreds(numHundreds)} ${tens(numTens,numUnits)} ${units(numTens, numUnits)}`;
     textNumber.replace(/\s+/g, " ").trim();
   } else {
     textNumber = "0";
